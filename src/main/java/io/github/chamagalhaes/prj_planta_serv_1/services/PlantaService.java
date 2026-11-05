@@ -10,8 +10,8 @@ import java.util.List;
 public class PlantaService {
     private final PlantaRepository plantaRepository;
 
-    public PlantaService(PlantaService plantaService){
-        this.plantaRepository = plantaService.plantaRepository;
+    public PlantaService(PlantaRepository plantaRepository) {
+        this.plantaRepository = plantaRepository;
     }
 
     public List<Planta> getPlantas(){
