@@ -28,14 +28,15 @@ public class FlorService {
 
     public Flor salvarFlor(FlorRecordDto florRecordDto) {
         Flor flor = new Flor();
-        flor.setIdflor(florRecordDto.idFlor());
+        // idFlor NÃO é setado: o banco gera
         flor.setComprimento_sepala(florRecordDto.comprimento_sepala());
         flor.setLargura_sepala(florRecordDto.largura_sepala());
         flor.setComprimento_pepala(florRecordDto.comprimento_petala());
         flor.setLargura_petala(florRecordDto.largura_petala());
         flor.setCor(florRecordDto.cor());
         flor.setEspecieTipo(florRecordDto.especieTipo());
-        flor.setPlanta(plantaRepository.findById(florRecordDto.idPlanta()).get());
+        flor.setPlanta(plantaRepository.findById(florRecordDto.idPlanta())
+                .orElseThrow(() -> new RuntimeException("Planta não encontrada: " + florRecordDto.idPlanta())));
 
         return florRepository.save(flor);
     }
