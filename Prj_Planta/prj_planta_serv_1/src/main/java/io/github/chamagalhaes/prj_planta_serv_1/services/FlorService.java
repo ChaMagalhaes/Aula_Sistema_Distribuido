@@ -28,7 +28,10 @@ public class FlorService {
 
     public Flor salvarFlor(FlorRecordDto florRecordDto) {
         Flor flor = new Flor();
-        // idFlor NÃO é setado: o banco gera
+        // Sem idFlor o banco gera um novo id; com idFlor a flor existente é atualizada
+        if (florRecordDto.idFlor() != null) {
+            flor.setIdflor(florRecordDto.idFlor());
+        }
         flor.setComprimento_sepala(florRecordDto.comprimento_sepala());
         flor.setLargura_sepala(florRecordDto.largura_sepala());
         flor.setComprimento_pepala(florRecordDto.comprimento_petala());
